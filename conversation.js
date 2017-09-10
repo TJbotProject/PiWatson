@@ -28,6 +28,11 @@ var hardware = ['microphone', 'speaker'];
 
 // set up TJBot's configuration
 var tjConfig = {
+    verboseLogging: true,
+    robot: {
+        name: 'antônia',
+        gender: 'female'
+    },
     log: {
         level: 'verbose'
     }
@@ -40,18 +45,28 @@ console.log("You can ask me to introduce myself or tell you a joke.");
 console.log("Try saying, \"" + tj.configuration.robot.name + ", please introduce yourself\" or \"" + tj.configuration.robot.name + ", who are you?\"");
 console.log("You can also say, \"" + tj.configuration.robot.name + ", tell me a joke!\"");
 
+//tj.speak('Hello World');
+tj.speak('Oi, Meu nome é Antônia!');
+
+
 // listen for utterances with our attentionWord and send the result to
 // the Conversation service
 tj.listen(function(msg) {
+
+    console.log(msg);
     // check to see if they are talking to TJBot
     if (msg.startsWith(tj.configuration.robot.name)) {
         // remove our name from the message
-        var turn = msg.toLowerCase().replace(tj.configuration.robot.name.toLowerCase(), "");
+  console.log('nome ok!!');       
+ var turn = msg.toLowerCase().replace(tj.configuration.robot.name.toLowerCase(), "");
 
         // send to the conversation service
         tj.converse(WORKSPACEID, turn, function(response) {
             // speak the result
-            tj.speak(response.description);
+	
+	console.log(response.description);
+        //tj.speak(turn);    
+	tj.speak(response.description);
         });
     }
 });
