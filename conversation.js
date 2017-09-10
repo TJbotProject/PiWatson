@@ -38,7 +38,7 @@ var tjConfig = {
     }
 };
 
-// instantiate our TJBot!
+// instantiate ou r TJBot!
 var tj = new TJBot(hardware, tjConfig, credentials);
 
 console.log("You can ask me to introduce myself or tell you a joke.");
